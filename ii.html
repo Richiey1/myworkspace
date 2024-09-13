@@ -1,22 +1,47 @@
 <!DOCTYPE html>
-	<html lang="en"
-		 <head>
-			<title>Play It Yourself</title>
-			<link rel="stylesheet" href="app.css">
+<html>
+<head>
+    <title>Current Time</title>
+</head>
+<body>
+<script>
+"use strict";
 
-			<style type="text/css">
-				fa-android 
-				{
-					font-size: 70px;
-					color: green
+// Create a new Date object
+let today = new Date();
 
-				}
+// Get the day of the week
+let day = today.getDay();
+let daylist = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-			</style>
+// Display the day of the week
+console.log("Today is: " + daylist[day] + ".");
 
+// Get current hours, minutes, and seconds
+let hour = today.getHours();
+let minute = today.getMinutes();
+let second = today.getSeconds();
 
-		 </head>
- <body>
+// Determine AM or PM
+let prepand = (hour >= 12) ? "PM" : "AM";
 
-	</body>
+// Convert hour from 24-hour format to 12-hour format
+hour = (hour > 12) ? hour - 12 : hour;
+hour = (hour === 0) ? 12 : hour;
+
+// Special cases for Noon and Midnight
+if (hour === 12 && minute === 0 && second === 0) {
+    prepand = (prepand === "AM") ? 'Midnight' : 'Noon';
+} else {
+    prepand = (prepand === "AM") ? 'AM' : 'PM';
+}
+
+// Format minutes and seconds to always show two digits
+minute = (minute < 10) ? '0' + minute : minute;
+second = (second < 10) ? '0' + second : second;
+
+// Display the current time
+console.log("Current Time: " + hour + " " + prepand + " " + minute + ":" + second);
+</script>
+</body>
 </html>
